@@ -11,3 +11,6 @@ my task github from Hactiv8
 
 I am a Beginner Programmer from Balinese. im feeling exciting when learning about programming. My dream is be Expert Programmer.
 
+## Future Plans
+
+After finishing my bootcamp at Hactiv8, i want to work in big start up in indonesian like Bukalapak, Gojek. after working there, i want to continue my work at Facebook as Manager Facebook.
