@@ -3,32 +3,82 @@
 	padding: 0;
 }
 
+html {
+	font-family:sans-serif;
+}
 body {
-	background-color: #0179BF;
-}
-header {
-	margin: 230px 430px;
-	text-align: center;
 	background-color: white;
-	padding: 20px 40px;
-	box-shadow: 5px 5px 2.5px #aaaaaa;
-	border: 0px solid black;
-	border-radius: 20px;
-}
-p {
-	font-size: 15px;
-}
-nav {
-	padding: 20px 10px;
 }
 
-nav ul a {
-	padding: 10px;
-	text-decoration: none;
-	background-color: #55AF50;
-	color: white;
-	border-radius: 2px;
+#sidenav {
+	height: 100%;
+	width: 180px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
-nav ul li {
-	display: inline;
+#sidenav h1 {
+	padding:  6px 8px 20px 16px;
+	color: white;
+	font-size: 20px
+}
+#sidenav a {
+	padding:  6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 19px;
+	color: #818181;
+	display: block;
+}
+#sidenav a:hover{
+	color: white;
+}
+#main {
+	margin: 20px 25px 20px 250px;
+	font-size: 19px;
+	padding: 0 10px;
+}
+article {
+	margin: 70px 40px 10px 40px; 
+}
+article h2 {
+	margin-bottom: 20px;
+}
+article h2 a {
+	text-decoration: none;
+	color: black;
+	border-bottom: 1px solid blue;
+}
+.page p, .page h3 {
+	margin-bottom: 15px;
+}
+.page h3 {
+	margin-top: 50px;
+}
+.page h4 {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+.page ul {
+	margin-left: 50px;	
+	margin-bottom: 10px;
+}
+.page ul li {
+	padding: 2px;
+}
+@media screen and (max-height: 450px) {
+  #sidenav {
+  	padding-top: 15px;
+  }
+  #sidenav a {
+  	font-size: 15px;
+  }
+  .page p{
+  	font-size: 15px;	
+  }
 }
