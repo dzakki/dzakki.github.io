@@ -1,0 +1,25 @@
+{{ if ne .Site.Params.hideMadeWithLine true }}
+<p>
+  <span>
+    &copy; {{ now.Format "2006"}}
+    <a href="https://dzakki.github.io/">
+      Dzakki
+    </a>
+  </span>
+  <span>·</span>
+  <span>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">
+      Hugo
+    </a>
+  </span>
+  <span>·</span>
+  <span>
+    Theme
+    <a href="https://github.com/janraasch/hugo-bearblog" rel=" noopener noreferrer" target="_blank">
+      ʕ•ᴥ•ʔ Bearblog
+    </a>
+  </span>
+</p>
+
+{{ end }}
