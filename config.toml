@@ -1,0 +1,4 @@
+baseURL = 'https://dzakki.github.io/'
+languageCode = 'en-us'
+title = 'Dzakki'
+theme = 'hugo-bearblog'
