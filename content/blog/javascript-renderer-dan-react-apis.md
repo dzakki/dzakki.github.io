@@ -129,4 +129,4 @@ Cara menyelesaikan:
 
 
 ## Kesimpulan
-Dengan basic javascript renderer kita jadi mudah memahami alur dalam membuat element dan merender element yang kita buat menggunakan React API's. Jika kita ingin membuat aplikasi, sangat tidak cocok menggunakan `React.createElement` karena kode nya akan sangat kompleks sehingga akan sulit ketika dibaca.
+Dengan basic javascript renderer kita jadi mudah memahami alur dalam membuat element dan merender element yang kita buat menggunakan React API's. Jika kita ingin membuat aplikasi, sangat tidak cocok menggunakan `React.createElement` karena kode nya akan sangat kompleks sehingga akan sulit ketika dibaca. Solusinya adalah [menggunakan JSX](https://reactjs.org/docs/introducing-jsx.html).
