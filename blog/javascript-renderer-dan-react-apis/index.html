@@ -1,0 +1,177 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta http-equiv=x-clacks-overhead content="GNU Terry Pratchett">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Javascript Renderer Dan React API's | Dzakki</title>
+<meta name=title content="Javascript Renderer Dan React API's">
+<meta name=description content="Belajar fundamental React `React.createElement` dan `ReactDOM.render` dan Javascript renderer `document.createElement` dan `document.append`">
+<meta name=keywords content="react,javascript,">
+<meta property="og:title" content="Javascript Renderer Dan React API's">
+<meta property="og:description" content="Belajar fundamental React `React.createElement` dan `ReactDOM.render` dan Javascript renderer `document.createElement` dan `document.append`">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dzakki.github.io/blog/javascript-renderer-dan-react-apis/"><meta property="article:section" content="blog">
+<meta property="article:published_time" content="2021-09-08T19:09:15+08:00">
+<meta property="article:modified_time" content="2021-09-08T19:09:15+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Javascript Renderer Dan React API's">
+<meta name=twitter:description content="Belajar fundamental React `React.createElement` dan `ReactDOM.render` dan Javascript renderer `document.createElement` dan `document.append`">
+<meta itemprop=name content="Javascript Renderer Dan React API's">
+<meta itemprop=description content="Belajar fundamental React `React.createElement` dan `ReactDOM.render` dan Javascript renderer `document.createElement` dan `document.append`"><meta itemprop=datePublished content="2021-09-08T19:09:15+08:00">
+<meta itemprop=dateModified content="2021-09-08T19:09:15+08:00">
+<meta itemprop=wordCount content="434">
+<meta itemprop=keywords content="react,javascript,">
+<meta name=referrer content="no-referrer-when-downgrade">
+<style>body{font-family:Verdana,sans-serif;margin:auto;padding:20px;max-width:720px;text-align:left;background-color:#fff;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;color:#444}h1,h2,h3,h4,h5,h6,strong,b{color:#222}a{color:#3273dc}.title{text-decoration:none;border:0}.title span{font-weight:400}nav a{margin-right:10px}textarea{width:100%;font-size:16px}input{font-size:16px}content{line-height:1.6}table{width:100%}img{max-width:100%}code{padding:2px 5px;background-color:#f2f2f2}pre code{color:#222;display:block;padding:20px;white-space:pre-wrap;font-size:14px}div.highlight pre{background-color:initial;color:initial}div.highlight code{background-color:unset;color:unset}blockquote{border-left:1px solid #999;color:#222;padding-left:20px;font-style:italic}footer{padding:25px;text-align:center}.helptext{color:#777;font-size:small}.errorlist{color:#eba613;font-size:small}ul.blog-posts{list-style-type:none;padding:unset}ul.blog-posts li{display:flex}ul.blog-posts li span{flex:0 0 130px}ul.blog-posts li a:visited{color:#8b6fcb}@media(prefers-color-scheme:dark){body{background-color:#333;color:#ddd}h1,h2,h3,h4,h5,h6,strong,b{color:#eee}a{color:#8cc2dd}code{background-color:#777}pre code{color:#ddd}blockquote{color:#ccc}textarea,input{background-color:#252525;color:#ddd}.helptext{color:#aaa}}</style>
+</head>
+<body>
+<header><a href=/ class=title>
+<h2>Dzakki</h2>
+</a>
+<nav><a href=/>Home</a>
+<a href=/blog>Blog</a>
+<a href=/jasa/>Jasa</a>
+<a href=/dukung>Dukung</a>
+</nav>
+</header>
+<main>
+<h1>Javascript Renderer Dan React API's</h1>
+<p>
+<i>
+<time datetime=2021-09-08 pubdate>
+08 Sep, 2021
+</time>
+</i>
+</p>
+<content>
+<p><code>React.createElement</code>, <code>ReactDOM.render</code> adalah sebagian dari React API&rsquo;s.</p>
+<p><code>React.createElement</code> itu seperti <code>document.createElement</code> yang dimana fungsinya untuk membuat element baru. sedangkan <code>ReactDOM.render</code> fungsi nya untuk merender element, kurang lebih sama seperti <code>document.append</code></p>
+<p>Kita akan belajar cara merender element dengan final output seperti ini:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;root&#34;</span>&gt; 
+     &lt;<span style=color:#f92672>div</span>&gt;Hello world&lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+</code></pre></div><p>Skeleton:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;root&#34;</span>&gt; 
+    <span style=color:#75715e>&lt;!-- tambahkan element baru  &lt;div&gt;Hello world&lt;/div&gt; disini menggunakan javascript --&gt;</span>
+  &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+</code></pre></div><p>Cara menyelesaikan kasus diatas, kita bisa menggunakan <code>document.createElement</code> untuk membuat element baru, dan <code>document.append</code> untuk merender element yang kita buat:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;root&#34;</span>&gt; 
+  &lt;/<span style=color:#f92672>div</span>&gt;
+
+  &lt;<span style=color:#f92672>script</span>&gt;
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>rootElement</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#39;root&#39;</span>)
+
+    <span style=color:#75715e>// Membuat element baru dengan tag div
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elementDiv</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;div&#39;</span>) <span style=color:#75715e>// &lt;div&gt;&lt;/div&gt;
+</span><span style=color:#75715e></span>
+    <span style=color:#75715e>// memberikan text kedalam element div. 
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>elementDiv</span>.<span style=color:#a6e22e>textContent</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Hello world&#39;</span> <span style=color:#75715e>// &lt;div&gt;Hello world&lt;/div&gt;
+</span><span style=color:#75715e></span>
+
+    <span style=color:#75715e>// merender element div kedalam scope tag yang memiliki id root. (&lt;div id=&#34;root&#34;&gt;)
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>rootElement</span>.<span style=color:#a6e22e>append</span>(<span style=color:#a6e22e>elementDiv</span>) <span style=color:#75715e>// &lt;div id=&#34;root&#34;&gt; &lt;div&gt;Hello world&lt;/div&gt; &lt;/div&gt;
+</span><span style=color:#75715e></span>  &lt;/<span style=color:#f92672>script</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+</code></pre></div><p>Lalu bagaimana jika kita menyelesaikannya menggunakan React API&rsquo;s?</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;root&#34;</span>&gt;
+  &lt;/<span style=color:#f92672>div</span>&gt;
+
+  &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://unpkg.com/react@17.0.0/umd/react.development.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span>&gt;
+    <span style=color:#75715e>// mengambil element div dengan id root untuk dijadikan sebagai root element / sebagai scope element baru.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>rootElement</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#39;root&#39;</span>)
+
+
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elementType</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;div&#39;</span>
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elemenentProps</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>className</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;container&#39;</span> } 
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elementChildren</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;hello world&#34;</span>
+
+    <span style=color:#75715e>// membuat element div, menambahkan class container dan text hello world.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reactElement</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>createElement</span>(<span style=color:#a6e22e>elementType</span>, <span style=color:#a6e22e>elemenentProps</span>, <span style=color:#a6e22e>elementChildren</span>) <span style=color:#75715e>// &lt;div class=&#34;container&#34;&gt;hello world&lt;/div&gt;
+</span><span style=color:#75715e></span>
+    <span style=color:#75715e>// merender reactElement (&lt;div class=&#34;container&#34;&gt;hello world&lt;/div&gt;)
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>ReactDOM</span>.<span style=color:#a6e22e>render</span>(<span style=color:#a6e22e>reactElement</span>, <span style=color:#a6e22e>rootElement</span>)
+  &lt;/<span style=color:#f92672>script</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+</code></pre></div><h2 id=penjelasan-tambahan>Penjelasan tambahan</h2>
+<p><code>React.createElement(type, [props], [...children])</code> menerima 3 parameter, yaitu:</p>
+<ol>
+<li>Type (<code>String</code>) : tipe tag html seperti <code>div, span, dll</code>.</li>
+<li>Props (<code>Object</code>): untuk menambahkan attribute pada element yang dibuat. seperti <code>className, style, id, dll</code>.</li>
+<li>Children (<code>Array[element] | Object[element] | String</code>): untuk menambahkan element children atau hanya sekedar text.</li>
+</ol>
+<p><code>ReactDOM.render(reactElement, rootElement)</code> menerima 2 parameter, yaitu:</p>
+<ol>
+<li>React element yang akan dirender.</li>
+<li>Root element yang akan diguanakan sebagai scope merender element.</li>
+</ol>
+<h2 id=extra>Extra</h2>
+<p>Cara membuat element baru ditambah element baru (element children) didalam nya menggunakan React API&rsquo;s</p>
+<p>Final output:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;root&#34;</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>span</span>&gt;ini adalah span&lt;/<span style=color:#f92672>span</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>body</span>&gt;
+</code></pre></div><p>Cara menyelesaikan:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>  <span style=color:#75715e>&lt;!-- .../ --&gt;</span>
+  &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span>&gt;
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>rootElement</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#39;root&#39;</span>)
+
+
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elementType</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;div&#39;</span>
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elemenentProps</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>className</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;container&#39;</span> } 
+
+    <span style=color:#75715e>// membuat element sebagai children
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>elementChildren</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#39;span&#39;</span>, <span style=color:#66d9ef>null</span>, <span style=color:#e6db74>&#39;ini adalah span&#39;</span>) <span style=color:#75715e>// &lt;span&gt;ini adalah span&lt;/span&gt;
+</span><span style=color:#75715e></span> 
+
+    <span style=color:#75715e>// membuat element div, menambahkan class container dan menambahkan children dalam bentuk element.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reactElement</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>createElement</span>(<span style=color:#a6e22e>elementType</span>, <span style=color:#a6e22e>elemenentProps</span>, <span style=color:#a6e22e>elementChildren</span>) <span style=color:#75715e>// &lt;div class=&#34;container&#34;&gt;&lt;span&gt;ini adalah span&lt;/span&gt;&lt;/div&gt;
+</span><span style=color:#75715e></span>
+    <span style=color:#a6e22e>ReactDOM</span>.<span style=color:#a6e22e>render</span>(<span style=color:#a6e22e>reactElement</span>, <span style=color:#a6e22e>rootElement</span>)
+  &lt;/<span style=color:#f92672>script</span>&gt;
+  <span style=color:#75715e>&lt;!-- .../ --&gt;</span>
+</code></pre></div><h2 id=kesimpulan>Kesimpulan</h2>
+<p>Dengan basic javascript renderer kita jadi mudah memahami alur dalam membuat element dan merender element yang kita buat menggunakan React API&rsquo;s. Jika kita ingin membuat aplikasi, sangat tidak cocok menggunakan <code>React.createElement</code> karena kode nya akan sangat kompleks sehingga akan sulit ketika dibaca.</p>
+</content>
+<p>
+<a href=https://dzakki.github.io/tags/react/>#react</a>
+<a href=https://dzakki.github.io/tags/javascript/>#javascript</a>
+</p>
+</main>
+<footer>
+<p>
+<span>
+&copy; 2021
+<a href=https://dzakki.github.io/>
+Dzakki
+</a>
+</span>
+<span>·</span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>
+Hugo
+</a>
+</span>
+<span>·</span>
+<span>
+Theme
+<a href=https://github.com/janraasch/hugo-bearblog rel=" noopener noreferrer" target=_blank>
+ʕ•ᴥ•ʔ Bearblog
+</a>
+</span>
+</p>
+</footer>
+</body>
+</html>
