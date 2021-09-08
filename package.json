@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "npm run beautify",
-    "beautify": "js-beautify layouts/**/*.html -r"
+    "beautify": "js-beautify layouts/**/*.html -r",
+    "dev": "hugo server -D"
   },
   "repository": {
     "type": "git",
